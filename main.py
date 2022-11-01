@@ -78,6 +78,9 @@ if args.cmd:
 elif args.lhost:
     banner()
     print(f'\nRunning ReverseShell from {target} to {ip}:{port}')
-    exploit(reverse)
+    try:
+        exploit(reverse)
+    except KeyboardInterrupt:
+        print('\nExiting...')
 else:
     print('Erro!')
